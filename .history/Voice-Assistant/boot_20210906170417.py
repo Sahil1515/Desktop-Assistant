@@ -53,7 +53,6 @@ def takeCommand1():
 
     try:
         print("Recognizing...")
-        # speech to text
         query1 = r.recognize_google(audio, language='en-in')
     except Exception as e:
         print(e)

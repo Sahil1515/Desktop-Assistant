@@ -38,9 +38,9 @@ Faster::
 Ubuntu + Python + gTTS
 1} Install sox
 
-sudo apt-get update
-sudo apt-get install sox
-sudo apt-get install libsox-fmt-all
+$ sudo apt-get update
+$ sudo apt-get install sox
+$ sudo apt-get install libsox-fmt-all
 2} use the tempo 1.9 option in sox to play gTTS output 1.9 times faster
 
 #! /usr/bin/python3.5

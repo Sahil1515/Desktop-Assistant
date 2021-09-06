@@ -6,6 +6,9 @@ sudo apt-get install python-espeak
 
 pip3 install gtts
 
+
+
+
 sh: 1: mpg321: not found
 
 sudo apt-get install mpg321
@@ -38,9 +41,9 @@ Faster::
 Ubuntu + Python + gTTS
 1} Install sox
 
-sudo apt-get update
-sudo apt-get install sox
-sudo apt-get install libsox-fmt-all
+$ sudo apt-get update
+$ sudo apt-get install sox
+$ sudo apt-get install libsox-fmt-all
 2} use the tempo 1.9 option in sox to play gTTS output 1.9 times faster
 
 #! /usr/bin/python3.5
@@ -82,13 +85,11 @@ pyaudio
 pip install SpeechRecognition
 
 pip install pyaudio
-
 If you found error -
 
 sudo apt-get install python-pyaudio
 
 sudo apt-get install libjack-jackd2-dev portaudio19-dev
-
 Then again -
 
 pip install pyaudio

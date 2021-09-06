@@ -19,7 +19,6 @@ assname='Paul'
 
 def speak(mytext):
     language = 'hi'
-    # Text to speech
     myobj = gTTS(text=mytext, lang=language, slow=False)
     myobj.save("welcome.mp3")
     # os.system("mpg321 welcome.mp3")
@@ -53,7 +52,6 @@ def takeCommand1():
 
     try:
         print("Recognizing...")
-        # speech to text
         query1 = r.recognize_google(audio, language='en-in')
     except Exception as e:
         print(e)

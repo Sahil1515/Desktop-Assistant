@@ -1,5 +1,8 @@
 
 
+import wolframalpha
+from twilio.rest import Client
+import requests
 import time
 import pyjokes
 import webbrowser
@@ -18,8 +21,7 @@ import os
 assname='Paul'
 
 def speak(mytext):
-    language = 'hi'
-    # Text to speech
+    language = 'en'
     myobj = gTTS(text=mytext, lang=language, slow=False)
     myobj.save("welcome.mp3")
     # os.system("mpg321 welcome.mp3")
@@ -49,11 +51,11 @@ def takeCommand1():
     with sr.Microphone() as source:
         print("Listening...")
         r.adjust_for_ambient_noise(source)
+        # r.pause_threshold=1
         audio = r.listen(source)
 
     try:
         print("Recognizing...")
-        # speech to text
         query1 = r.recognize_google(audio, language='en-in')
     except Exception as e:
         print(e)
@@ -140,9 +142,7 @@ if __name__ == '__main__':
             speak("I have been created by Sahil.")
 
         elif 'joke' in query:
-            j=pyjokes.get_joke()
-            print(j)
-            speak(j)
+            speak(pyjokes.get_joke())
 
         elif "Good Morning" in query:
             speak("A warm" + query)
@@ -159,30 +159,30 @@ if __name__ == '__main__':
         elif "restart" in query:
             subprocess.call(["shutdown", "/r"])
 
-        elif "shutdown" in query :
-            speak("Shutting down")
-            os.system("shutdown now -h")
-
-
-        elif "sleep" in query :
-            speak("Sleeping")
-            os.system('systemctl suspend')
+        elif "hibernate" in query or "sleep" in query:
+            speak("Hibernating")
+            subprocess.call("shutdown / h")
 
 
         elif "write a note" in query:
             speak("What should i write, sir")
             note = takeCommand()
-            file = open('jarvis.txt', 'w+')
-            file.write(note)
-            print(note)
-            speak("Written")
-            speak(note)
+            file = open('jarvis.txt', 'w')
+            speak("Sir, Should i include date and time")
+            snfm = takeCommand()
+            # while snfm== None:
+            #     snfm=takeCommand()
 
-
+            if 'yes' in snfm or 'sure' in snfm:
+                strTime = datetime.datetime.now().strftime("%H:%M:%S")
+                file.write(strTime)
+                file.write(" :- ")
+                file.write(note)
+            else:
+                file.write(note)
 
         elif "show note" in query:
             speak("Showing Notes")
             file = open("jarvis.txt", "r")
             print(file.read())
-            r=file.read()
-            speak(r)
+            speak(file.read(6))
